@@ -32,9 +32,7 @@ You need to create a `credentials.json` file from Google Cloud Console:
 4. Project name: `Gmail Tool` → Click "CREATE"
 5. Click "APIs & Services" (left sidebar) → "Enable APIs and Services" (blue button)
 6. Search for "Gmail API" → Click it → Click "ENABLE"
-7. Click "Credentials" (left sidebar) → "CREATE CREDENTIALS" (top) → "OAuth client ID"
-
-**First time OAuth setup:**
+7. Click "Credentials" (left sidebar) → "CREATE CREDENTIALS" (top) → "OAuth client ID" First time OAuth setup:
 8. Click the blue "Get started" button
 9. Fill in:
    - App name: `Inbox Cleaner`
@@ -47,6 +45,7 @@ You need to create a `credentials.json` file from Google Cloud Console:
 12. Click "Create" (bottom left)
 
 **Now create the credentials:**
+
 13. You'll see "OAuth configuration created!" message at the bottom
 14. Click the "Create OAuth client" button in the middle of the screen
 15. Application type: Choose "Desktop app"
@@ -57,6 +56,7 @@ You need to create a `credentials.json` file from Google Cloud Console:
 20. Move it into your `inbox-cleaner` folder
 
 **Add yourself as a test user:**
+
 21. Go back to https://console.cloud.google.com/
 22. Click "APIs & Services" → "OAuth consent screen" (left sidebar)
 23. Click "Audience" in the left sidebar (NOT Overview)
