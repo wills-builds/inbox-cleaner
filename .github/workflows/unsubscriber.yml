@@ -1,0 +1,51 @@
+name: Weekly Unsubscribe Scan
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Create credentials file
+      run: |
+        echo '${{ secrets.GMAIL_CREDENTIALS }}' > credentials.json
+    
+    - name: Create token file
+      run: |
+        echo '${{ secrets.GMAIL_TOKEN }}' > token.pickle
+    
+    - name: Run unsubscriber
+      run: |
+        python unsubscriber.py --live
+    
+    - name: Upload results
+      uses: actions/upload-artifact@v3
+      with:
+        name: unsubscribe-list
+        path: unsubscribe_list.txt
+        retention-days: 30
+    
+    - name: Save updated token
+      run: |
+        echo "GMAIL_TOKEN=$(cat token.pickle | base64)" >> $GITHUB_ENV
+    
+    # Optional: Send results via email or Slack
+    # - name: Send notification
+    #   run: |
+    #     # Add your notification logic here
